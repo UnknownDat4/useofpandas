@@ -40,10 +40,9 @@ def tools3_Average():
 # ¿Cuál es la nota mínima de la materia "Ética y Valores"?
 def minimum_grade():
     df_result = notes[(notes['nombre_materia'] == 'Ética y Valores')]
-    return df_result['nota_final'].min()
+    return df_result['nota_final'].min().round(1)
 
 # ¿Cuántos estudiantes que vivan en el barrio "Guayaquil" han obtenido un promedio general por encima de 3.8?
-
 def high_performing_guayaquil_students():
     average_students_note = notes[["identificacion","nota_final"]].groupby("identificacion").mean().round(1)
     guayaquil_students = neighborhoods[neighborhoods["barrio"] == "Guayaquil"]
