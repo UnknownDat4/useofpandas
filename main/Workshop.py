@@ -12,6 +12,9 @@ notes = load_json('notas')
 
 
 #¿Cuál es el promedio de edad de los estudiantes?
+def average_students_ages():
+    result = students["edad"].mean().round(1)
+    return result
 
 #¿Cuántos estudiantes viven en el barrio "San Benito"?
 def san_benito_students():
@@ -44,8 +47,7 @@ def subjects_failed():
 # ¿Cuál o cuáles materias no han sido matriculadas por los estudiantes?
 
 
-
-
+print(f"- el promedio de edad de los estudiantes es de {average_students_ages()}")
 print(f"- {san_benito_students()} estudiantes viven en el barrio San Benito")
 
 print(f"- {approved_database_subject()} estudiantes aprobaron la materia Base de Datos")
