@@ -44,6 +44,13 @@ def minimum_grade():
 
 # ¿Cuántos estudiantes que vivan en el barrio "Guayaquil" han obtenido un promedio general por encima de 3.8?
 
+def high_performing_guayaquil_students():
+    average_students_note = notes[["identificacion","nota_final"]].groupby("identificacion").mean().round(1)
+    guayaquil_students = neighborhoods[neighborhoods["barrio"] == "Guayaquil"]
+    note_guayaquil_students = average_students_note.merge(guayaquil_students, how="inner", on="identificacion")
+    result = len(note_guayaquil_students[note_guayaquil_students["nota_final"] > 3.8])
+    return result
+
 
 # ¿Cuál es la materia con mayor cantidad de estudiantes que han reprobado?
 def subjects_failed():
@@ -61,6 +68,7 @@ print(f"- hay {number_neighborhoods()} barrios registrados")
 print(f"- {approved_database_subject()} estudiantes aprobaron la materia Base de Datos")
 print(f"- el promedio para la materia Herramientas III es {tools3_Average()}")
 print(f"- la nota mínima de la materia Ética y Valore es de {minimum_grade()}")
+print(f"- {high_performing_guayaquil_students()} estudiantes que vivan en Guayaquil han obtenido un promedio general por encima de 3.8")
 
 subjects_failed_result = subjects_failed()
 print(f"- la materia con mayor cantidad de estudiantes que han reprobado es {subjects_failed_result[0]} con {subjects_failed_result[1]} repropados")
