@@ -51,7 +51,6 @@ def high_performing_guayaquil_students():
     result = len(note_guayaquil_students[note_guayaquil_students["nota_final"] > 3.8])
     return result
 
-
 # ¿Cuál es la materia con mayor cantidad de estudiantes que han reprobado?
 def subjects_failed():
     df_result = notes.query("nota_final < 3").groupby('nombre_materia')['nota_final'].count()
@@ -60,6 +59,21 @@ def subjects_failed():
     return materia, reprobados
 
 # ¿Cuál o cuáles materias no han sido matriculadas por los estudiantes?
+def unregistered_subject():
+    subjects.columns = ["nombre_materia"]
+    subject_registered = notes["nombre_materia"].value_counts().reset_index()
+    subject_not_registered = subjects.merge(
+        subject_registered,
+        on="nombre_materia",
+        how="left"
+    )
+    result = (subject_not_registered[subject_not_registered["count"].isna()])["nombre_materia"].values
+    # Another solution more simple
+    #total_subjects = set(subjects[0])
+    #subject_registered = set(notes["nombre_materia"])
+    #result = total_subjects.difference(subject_registered)
+    return result
+
 
 
 print(f"- el promedio de edad de los estudiantes es de {average_students_ages()}")
@@ -72,3 +86,5 @@ print(f"- {high_performing_guayaquil_students()} estudiantes que vivan en Guayaq
 
 subjects_failed_result = subjects_failed()
 print(f"- la materia con mayor cantidad de estudiantes que han reprobado es {subjects_failed_result[0]} con {subjects_failed_result[1]} repropados")
+
+print(f"- solo {"".join(unregistered_subject())} no ha sido matriculada por los estudiantes")
