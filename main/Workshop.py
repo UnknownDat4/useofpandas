@@ -1,6 +1,6 @@
 import pandas as pd
 
-path = 'C:/Users/jhntn/OneDrive/Documentos/Python/Pandas/'
+path = '../data/'
 
 def load_json(file_name):
     return pd.read_json(f'{path}{file_name}.json')
@@ -25,7 +25,6 @@ def minimum_grade():
 
 def subjects_failed():
     df_result = notas.query("nota_final < 3").groupby('nombre_materia')['nota_final'].count()
-    materia = df_result.idxmax() 
+    materia = df_result.idxmax()
     reprobados = int(df_result.max())
     return materia, reprobados
-
