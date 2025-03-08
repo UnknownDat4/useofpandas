@@ -22,6 +22,9 @@ def san_benito_students():
     return len(df_combined_data[df_combined_data['barrio'] == 'San Benito']) # subquerie evaluation
 
 # ¿Cuántos barrios están registrados?
+def number_neighborhoods():
+    result = len(neighborhoods['barrio'].value_counts())
+    return result
 
 # ¿Cuántos estudiantes aprobaron la materia "Base de Datos"?
 def approved_database_subject():
@@ -49,7 +52,7 @@ def subjects_failed():
 
 print(f"- el promedio de edad de los estudiantes es de {average_students_ages()}")
 print(f"- {san_benito_students()} estudiantes viven en el barrio San Benito")
-
+print(f"- hay {number_neighborhoods()} barrios registrados")
 print(f"- {approved_database_subject()} estudiantes aprobaron la materia Base de Datos")
 
 print(f"- la nota mínima de la materia Ética y Valore es de {minimum_grade()}")
