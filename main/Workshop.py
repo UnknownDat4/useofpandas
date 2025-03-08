@@ -29,7 +29,7 @@ def approved_database_subject():
 
 # ¿Cuál es la nota mínima de la materia "Ética y Valores"?
 def minimum_grade():
-    df_result = notes[(notas['nombre_materia'] == 'Ética y Valores')]
+    df_result = notes[(notes['nombre_materia'] == 'Ética y Valores')]
     return df_result['nota_final'].min()
 
 # ¿Cuántos estudiantes que vivan en el barrio "Guayaquil" han obtenido un promedio general por encima de 3.8?
@@ -42,3 +42,15 @@ def subjects_failed():
     return materia, reprobados
 
 # ¿Cuál o cuáles materias no han sido matriculadas por los estudiantes?
+
+
+
+
+print(f"- {san_benito_students()} estudiantes viven en el barrio San Benito")
+
+print(f"- {approved_database_subject()} estudiantes aprobaron la materia Base de Datos")
+
+print(f"- la nota mínima de la materia Ética y Valore es de {minimum_grade()}")
+
+subjects_failed_result = subjects_failed()
+print(f"- la materia con mayor cantidad de estudiantes que han reprobado es {subjects_failed_result[0]} con {subjects_failed_result[1]} repropados")
