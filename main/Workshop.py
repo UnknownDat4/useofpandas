@@ -32,6 +32,10 @@ def approved_database_subject():
     return df_result.shape[0]
 
 # ¿Cuál es el promedio para la materia "Herramientas III"?
+def tools3_Average():
+    tools3_notes = notes[notes["nombre_materia"] == "Herramientas III"]
+    final_note_average = tools3_notes["nota_final"].mean().round(1)
+    return final_note_average
 
 # ¿Cuál es la nota mínima de la materia "Ética y Valores"?
 def minimum_grade():
@@ -39,6 +43,7 @@ def minimum_grade():
     return df_result['nota_final'].min()
 
 # ¿Cuántos estudiantes que vivan en el barrio "Guayaquil" han obtenido un promedio general por encima de 3.8?
+
 
 # ¿Cuál es la materia con mayor cantidad de estudiantes que han reprobado?
 def subjects_failed():
@@ -54,7 +59,7 @@ print(f"- el promedio de edad de los estudiantes es de {average_students_ages()}
 print(f"- {san_benito_students()} estudiantes viven en el barrio San Benito")
 print(f"- hay {number_neighborhoods()} barrios registrados")
 print(f"- {approved_database_subject()} estudiantes aprobaron la materia Base de Datos")
-
+print(f"- el promedio para la materia Herramientas III es {tools3_Average()}")
 print(f"- la nota mínima de la materia Ética y Valore es de {minimum_grade()}")
 
 subjects_failed_result = subjects_failed()
