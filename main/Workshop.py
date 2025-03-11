@@ -10,7 +10,6 @@ neighborhoods = load_json('barrios')
 subjects = load_json('materias')
 notes = load_json('notas')
 
-
 #¿Cuál es el promedio de edad de los estudiantes?
 def average_students_ages():
     result = students["edad"].mean().round(1)
@@ -18,8 +17,8 @@ def average_students_ages():
 
 #¿Cuántos estudiantes viven en el barrio "San Benito"?
 def san_benito_students():
-    df_combined_data = students.merge(neighborhoods, on='identificacion', how='inner') # used for combining dataframes
-    return len(df_combined_data[df_combined_data['barrio'] == 'San Benito']) # subquerie evaluation
+    number_students = (neighborhoods["barrio"] == "San Benito").sum()
+    return number_students
 
 # ¿Cuántos barrios están registrados?
 def number_neighborhoods():
@@ -86,4 +85,5 @@ print(f"- {high_performing_guayaquil_students()} estudiantes que vivan en Guayaq
 subjects_failed_result = subjects_failed()
 print(f"- la materia con mayor cantidad de estudiantes que han reprobado es {subjects_failed_result[0]} con {subjects_failed_result[1]} repropados")
 
-print(f"- solo {"".join(unregistered_subject())} no ha sido matriculada por los estudiantes")
+print(f'- solo {"".join(unregistered_subject())} no ha sido matriculada por los estudiantes')
+
